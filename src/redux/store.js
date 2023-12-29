@@ -14,6 +14,7 @@ import {
 const persistConfig = {
   key: 'root',
   storage,
+  whitelist:['baseCurrency']
 };
 
 const persistedReducer = persistReducer(persistConfig, currencyReducer);
