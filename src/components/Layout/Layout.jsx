@@ -18,7 +18,7 @@ const Layout = () => {
             </li>
           </ul>
         </nav>
-        {baseCurrence && <p>Your baseCurrence: {baseCurrence}</p>}
+        {baseCurrence && <p>Your baseCurrency: {baseCurrence}</p>}
       </header>
       <Suspense>
         <Outlet />
