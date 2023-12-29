@@ -3,9 +3,11 @@ import { Layout } from './Layout/Layout';
 import Rates from 'pages/Rates';
 import Home from 'pages/Home';
 import { useEffect } from 'react';
-import { getUserInfo } from 'service/getUserInfo';
+import { useDispatch } from 'react-redux';
+import { fetchBaseCurrency } from '../redux/operations';
 
 export const App = () => {
+  const dispatch = useDispatch();
   useEffect(() => {
     var options = {
       enableHighAccuracy: true,
@@ -15,8 +17,7 @@ export const App = () => {
 
     function success(pos) {
       var crd = pos.coords;
-      console.log(pos.console)
-      getUserInfo(pos.coords)
+      dispatch(fetchBaseCurrency(pos.coords));
       console.log('Ваше текущее местоположение:');
       console.log(`Широта: ${crd.latitude}`);
       console.log(`Долгота: ${crd.longitude}`);
@@ -28,7 +29,7 @@ export const App = () => {
     }
 
     navigator.geolocation.getCurrentPosition(success, error, options);
-  },[])
+  }, [dispatch]);
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
